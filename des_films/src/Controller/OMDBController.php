@@ -18,15 +18,58 @@ class OMDBController extends AbstractController
     }
 
     /**
+     * @Route("/film", name="film")
+     */
+    public function film()
+    {
+        $apiKey= "733e3e1";
+        $query= "Hello";
+        $ctrl_name= "OMDBController";
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'http://www.omdbapi.com/?s='. $query .'&apikey=' . $apiKey);
+        curl_setopt($ch,  CURLOPT_RETURNTRANSFER, true);
+
+        $result_curl = curl_exec($ch);
+        $json = json_decode($result_curl);
+
+
+        return $this->render('omdb/index.html.twig',
+            [
+                'controller_name' => $ctrl_name,
+                'query' => 'Alooors, avec '. $query .' dans le titre, on a trouvé ça : ',
+                //J'accède à la case search de mon tableau Json (la seule case du tableau)
+                'movies' => $json->Search
+            ]);
+    }
+
+    /**
      * @Route("/query", name="query")
      */
     public function query()
     {
-        echo "Coucou, tu veux voir ma requête ?";
-        die;
+        $apiKey= "733e3e1";
+        $query= "Hello";
+        $ctrl_name= "OMDBController";
 
-       /* return $this->render('omdb/index.html.twig', [
-            'controller_name' => 'OMDBController',
-        ]); */
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'http://www.omdbapi.com/?s='. $query .'&apikey=' . $apiKey);
+        curl_setopt($ch,  CURLOPT_RETURNTRANSFER, true);
+
+        $result_curl = curl_exec($ch);
+        $json = json_decode($result_curl);
+
+
+        return $this->render('omdb/index.html.twig',
+            [
+                'controller_name' => $ctrl_name,
+                'query' => 'Alooors, avec '. $query .' dans le titre, on a trouvé ça : ',
+                //J'accède à la case search de mon tableau Json (la seule case du tableau)
+                'movies' => $json->Search
+            ]);
     }
+
+
+
+
 }
