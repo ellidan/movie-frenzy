@@ -30,11 +30,11 @@
 
             <h3>La liste des films : </h3>
 
-            <div class="card-group" >
+            <div class="card-columns">
 
                 {% for item in movies %}
                 <div class="card">
-                    <img class="card-img-top w-25" src="{{ item.Poster }}" title="{{ item.Title|escape( 'html_attr') }}" alt="Poster {{ item.Title|escape( 'html_attr') }}">
+                    <img class="card-img-top" src="{{ item.Poster }}" title="{{ item.Title|escape( 'html_attr') }}" alt="Poster {{ item.Title|escape( 'html_attr') }}">
 
                     <div class="card-body">
                         <h5 class="card-title">{{ item.Title }}</h5>
@@ -45,11 +45,7 @@
                     </div>
                 </div>
                 {% endfor %}
-
             </div>
-
-
-
     </div>
 
 </div>

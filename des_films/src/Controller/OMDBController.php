@@ -18,12 +18,13 @@ class OMDBController extends AbstractController
     }
 
     /**
-     * @Route("/film", name="film")
+     * @Route(
+     *     "/film/{query}",
+     *      name="film")
      */
-    public function film()
+    public function film( $query )
     {
         $apiKey= "733e3e1";
-        $query= "Hello";
         $ctrl_name= "OMDBController";
 
         $ch = curl_init();
