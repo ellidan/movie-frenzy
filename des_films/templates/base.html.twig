@@ -3,6 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+
+        <link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}" type="image/x-icon" />
+
         {% block stylesheets %}
             <link rel="stylesheet" href=" {{ asset('assets/css/bootstrap.min.css') }}" />
         {% endblock %}

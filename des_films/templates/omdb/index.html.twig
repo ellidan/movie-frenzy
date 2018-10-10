@@ -17,6 +17,16 @@
 
         <div class="col-md-4">
 
+            <form action="{{ path('query-process') }}" method="post">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Nom du film</label>
+                    <input type="text" name="movieName" class="form-control" aria-describedby="emailHelp" placeholder="Nom du film">
+                    <small id="emailHelp" class="form-text text-muted">Saisir le nom d'un film à rechercher...</small>
+                </div>
+                <button type="submit" class="btn btn-primary">Rechercher</button>
+            </form>
+
+            <br><br>
             <h3>This friendly message is coming from:</h3>
 
             <ul class="list-group">

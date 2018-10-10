@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class OMDBController extends AbstractController
@@ -19,16 +20,21 @@ class OMDBController extends AbstractController
 
     /**
      * @Route(
-     *     "/film/{query}",
-     *      name="film")
+     *     "/film/",
+     *      name="query-process")
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function film( $query )
+    public function film(Request $request)
     {
+        $query = $request->request->get('movieName');
+
         $apiKey= "733e3e1";
         $ctrl_name= "OMDBController";
 
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'http://www.omdbapi.com/?s='. $query .'&apikey=' . $apiKey);
+        curl_setopt($ch, CURLOPT_URL, 'http://www.omdbapi.com/?s='. urlencode($query) .'&apikey=' . $apiKey);
         curl_setopt($ch,  CURLOPT_RETURNTRANSFER, true);
 
         $result_curl = curl_exec($ch);
@@ -50,7 +56,7 @@ class OMDBController extends AbstractController
     public function query()
     {
         $apiKey= "733e3e1";
-        $query= "Hello";
+        $query= "Hulk";
         $ctrl_name= "OMDBController";
 
         $ch = curl_init();
